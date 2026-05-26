@@ -284,6 +284,8 @@ function openSettingsPane() {
             <span class=\"wa-crm-slider\"></span>
           </label>
         </div>
+        <div style=\"height: 1px; background: #e6e6e6; margin: 10px 0;\"></div>
+        
         <div style=\"flex:1\"></div>
       </div>
       <style>
@@ -338,6 +340,22 @@ function openSettingsPane() {
         chatList.style.filter = this.checked ? 'blur(6px)' : '';
       }
     };
+    // Load alert settings
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+        chrome.storage.sync.get({
+          recipientEmail: 'anubhav.jhanwar.23cse@bmu.edu.in',
+          webhookUrl: 'https://YOUR_WEBHOOK_HOST/send-email'
+        }, (cfg) => {
+          const emailInput = document.getElementById('wa-crm-alert-email');
+          const webhookInput = document.getElementById('wa-crm-alert-webhook');
+          if (emailInput) emailInput.value = cfg.recipientEmail || '';
+          if (webhookInput) webhookInput.value = cfg.webhookUrl || '';
+        });
+      }
+    } catch {}
+    // Save alert settings
+
   } else {
     pane.style.display = 'block';
   }
@@ -935,6 +953,7 @@ function getInventory() {
 function setInventory(inv) {
   localStorage.setItem('waCrmInventory', JSON.stringify(inv));
 }
+
 function openInventoryPane() {
   let pane = document.getElementById('wa-crm-inventory-pane');
   if (!pane) {
@@ -1066,6 +1085,7 @@ function renderInventoryWarning() {
   // Show warning in both product warning divs
   document.getElementById('wa-crm-inventory-warning-product1').textContent = inv.product1 <= 5 ? '⚠️ Low stock!' : '';
   document.getElementById('wa-crm-inventory-warning-product2').textContent = inv.product2 <= 5 ? '⚠️ Low stock!' : '';
+
 }
 // Deduct inventory when transaction is added
 const origAddDashboardTransaction = addDashboardTransaction;

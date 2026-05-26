@@ -102,7 +102,7 @@
 
 .wa-crm-logo-item.active {
   background: #075e54;
-  border-color: #25d366;
+  border-color: #c92727;
 }
 
 .wa-crm-header-inner {
@@ -152,6 +152,7 @@
 }
 .wa-crm-header-btn:active, .wa-crm-header-btn:focus {
   background: #075e54;
+  
   color: #25d366;
   outline: none;
 }
@@ -209,7 +210,8 @@
 .wa-crm-top-btn {
   background: none;
   border: none;
-  color: #25d366;
+  color:#25d366;
+;
   font-size: 16px;
   padding: 8px 16px;
   border-radius: 20px;

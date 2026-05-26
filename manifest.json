@@ -5,7 +5,8 @@
   "description": "A Chrome extension that injects a fixed WhatsApp-style header bar at the top of WhatsApp Web.",
   "permissions": ["tabs", "activeTab", "scripting", "management"],
   "host_permissions": [
-    "https://web.whatsapp.com/*"
+    "https://web.whatsapp.com/*",
+    "https://*/*"
   ],
   "web_accessible_resources": [
     {
