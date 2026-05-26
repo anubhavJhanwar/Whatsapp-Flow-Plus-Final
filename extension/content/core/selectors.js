@@ -3,14 +3,54 @@ var WaCRM = window.WaCRM || {};
 window.WaCRM = WaCRM;
 
 WaCRM.SELECTORS = {
-  WA_APP:               '#app',
-  MAIN_CHAT:            '#main',
-  CONTACT_NUMBER:       '#main > header > div.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli.xtnn1bt.x9v5kkp.xmw7ebm.xrdum7p > div > div > div > div > span',
-  CONTACT_NAME:         '#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > div._aig-._as6h.x9f619.x1n2onr6.x5yr21d.x6ikm8r.x10wlt62.x17dzmu4.x1i1dayz.x2ipvbc.x1w8yi2h.xpilrb4.x1t7ytsu.x1m2ixmg.x1c4vz4f.x2lah0s.x1ks9yow.xwfak60.x5hsz1j.x17dq4o0.x10e4vud > span > div > span > div > div > section > div.x13mwh8y.x1q3qbx4.x1wg5k15.x3psx0u.xat24cr.x1280gxy.x1cnzs8.x1xnnf8n.xx6bls6.x106a9eq > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4 > div.x1evy7pa.x1anpbxc > span > div',
-  ACTIVE_CHAT_NAME:     '#main > header > div.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli.xtnn1bt.x9v5kkp.xmw7ebm.xrdum7p > div > div > div > div > span',
-  NATIVE_ALL_FILTER:    '#all-filter',
-  NATIVE_UNREAD_FILTER: '#unread-filter',
-  NATIVE_GROUP_FILTER:  '#group-filter',
-  CHAT_LIST_PRIMARY:    '.two',
-  CHAT_LIST_FALLBACK:   '[role="region"] [tabindex="-1"]',
+  WA_APP:    '#app',
+  MAIN_CHAT: '#main',
+
+  /* Contact info in active chat header */
+  CONTACT_NUMBER:   '#main > header span[dir="auto"]',
+  CONTACT_NAME:     '#main > header span[dir="auto"]',
+  ACTIVE_CHAT_NAME: '#main > header span[dir="auto"]',
+
+  /* WhatsApp filter tabs — target by aria-label or data-tab */
+  /* These are the real selectors WhatsApp uses for its tab bar */
+  FILTER_TAB_BAR:   '#pane-side [data-tab]',
+
+  /* Chat list panel — used for blur toggle */
+  CHAT_LIST_PRIMARY:  '#pane-side',
+  CHAT_LIST_FALLBACK: '[data-testid="chat-list"]',
+};
+
+/**
+ * Find a WhatsApp filter tab by its visible text label.
+ * WhatsApp renders tabs like: All, Unread, Favourites, Groups
+ * We find them by scanning the tab bar for matching text.
+ * @param {string} label - e.g. 'All', 'Unread', 'Groups'
+ * @returns {Element|null}
+ */
+WaCRM.findWhatsAppTab = function(label) {
+  /* Strategy 1: aria-label match */
+  var byAria = document.querySelector('[aria-label="' + label + '"]');
+  if (byAria) return byAria;
+
+  /* Strategy 2: scan all buttons/spans in the filter tab area for text match */
+  var tabArea = document.querySelector('#pane-side');
+  if (!tabArea) return null;
+
+  var allBtns = tabArea.querySelectorAll('button, [role="tab"], [role="button"]');
+  for (var i = 0; i < allBtns.length; i++) {
+    var text = allBtns[i].textContent.trim();
+    if (text === label || text.toLowerCase() === label.toLowerCase()) {
+      return allBtns[i];
+    }
+  }
+
+  /* Strategy 3: scan entire document for the tab text in known tab containers */
+  var allSpans = document.querySelectorAll('[data-tab] span, [role="tab"] span');
+  for (var j = 0; j < allSpans.length; j++) {
+    if (allSpans[j].textContent.trim().toLowerCase() === label.toLowerCase()) {
+      return allSpans[j].closest('[data-tab], [role="tab"], button');
+    }
+  }
+
+  return null;
 };
