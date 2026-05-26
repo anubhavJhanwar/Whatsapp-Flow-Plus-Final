@@ -1,0 +1,98 @@
+/* ============================================================
+   popup.css — Extension popup window styles
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 280px;
+  font-family: sans-serif;
+  background: #181f21;
+  color: #fff;
+}
+
+.top-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #181f21;
+  height: 40px;
+  padding: 0 14px;
+  border-bottom: 1px solid #222c2e;
+}
+
+.profile-placeholder {
+  width: 26px;
+  height: 26px;
+  background: #075e54;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.popup-body {
+  padding: 18px 16px;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #25d366;
+  margin-bottom: 6px;
+}
+
+.popup-subtitle {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.popup-subtitle a {
+  color: #25d366;
+  text-decoration: none;
+}
+
+.popup-subtitle a:hover {
+  text-decoration: underline;
+}
+
+.popup-section-title {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.popup-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-link-btn {
+  display: block;
+  background: #075e54;
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.popup-link-btn:hover {
+  background: #25d366;
+  color: #111;
+}

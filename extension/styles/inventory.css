@@ -1,0 +1,14 @@
+/* ============================================================
+   inventory.css — Inventory Management pane styles
+   ============================================================ */
+
+#wa-crm-inventory-pane {
+  position: fixed;
+  top: 52px;
+  right: 64px;
+  width: 370px;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-family: sans-serif;
+}

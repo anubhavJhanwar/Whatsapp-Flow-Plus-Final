@@ -1,0 +1,105 @@
+/* ============================================================
+   sidebar.css — Right-hand icon sidebar
+   ============================================================ */
+
+#wa-crm-right-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100vh;
+  background: rgb(29, 31, 31);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.04);
+}
+
+.wa-crm-logo-item {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background 0.2s, transform 0.2s;
+  border: none;
+}
+
+.wa-crm-logo-item:hover {
+  background: #444;
+  transform: scale(1.05);
+}
+
+.wa-crm-logo-item.active {
+  background: #075e54;
+}
+
+.wa-crm-logo-item img {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.6) invert(1);
+  opacity: 0.7;
+}
+
+/* CSS tooltip via data-tooltip attribute */
+.wa-crm-logo-item[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 120%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #222c2e;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.wa-crm-logo-item[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* Admin panel icon overrides */
+#sidebar-icon-adminPanel img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+#sidebar-icon-adminPanel {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+/* Contact book icon overrides */
+#sidebar-icon-contactBook img {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.7) invert(1);
+  opacity: 0.7;
+}
+
+#sidebar-icon-contactBook {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+#sidebar-icon-contactBook:hover {
+  background: #444;
+  transform: scale(1.05) !important;
+}

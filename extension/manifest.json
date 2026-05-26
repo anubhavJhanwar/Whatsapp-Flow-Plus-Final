@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "WA Flow Plus",
+  "version": "2.0",
+  "description": "A professional CRM layer injected into WhatsApp Web.",
+  "permissions": ["tabs", "activeTab", "scripting", "storage", "management"],
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "https://*/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/icons/*", "assets/images/*"],
+      "matches": ["https://web.whatsapp.com/*"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": [
+        "content/core/constants.js",
+        "content/core/selectors.js",
+        "content/core/storage.js",
+        "content/core/eventBus.js",
+        "content/core/dom.js",
+        "content/core/utils.js",
+        "content/core/paneManager.js",
+        "content/core/injector.js",
+        "content/state/appState.js",
+        "content/state/dashboardState.js",
+        "content/state/inventoryState.js",
+        "content/state/settingsState.js",
+        "content/services/whatsapp.service.js",
+        "content/services/contact.service.js",
+        "content/services/inventory.service.js",
+        "content/services/dashboard.service.js",
+        "content/services/export.service.js",
+        "content/ui/panes/chartRenderer.js",
+        "content/ui/topbar/topbar.template.js",
+        "content/ui/topbar/topbar.events.js",
+        "content/ui/topbar/topbar.js",
+        "content/ui/sidebar/sidebar.template.js",
+        "content/ui/sidebar/sidebar.events.js",
+        "content/ui/sidebar/sidebar.js",
+        "content/ui/panes/addContact/addContact.template.js",
+        "content/ui/panes/addContact/addContact.logic.js",
+        "content/ui/panes/addContact/addContact.events.js",
+        "content/ui/panes/addContact/addContact.js",
+        "content/ui/panes/settings/settings.template.js",
+        "content/ui/panes/settings/settings.logic.js",
+        "content/ui/panes/settings/settings.events.js",
+        "content/ui/panes/settings/settings.js",
+        "content/ui/panes/dashboard/dashboard.template.js",
+        "content/ui/panes/dashboard/dashboard.charts.js",
+        "content/ui/panes/dashboard/dashboard.filters.js",
+        "content/ui/panes/dashboard/dashboard.export.js",
+        "content/ui/panes/dashboard/dashboard.logic.js",
+        "content/ui/panes/dashboard/dashboard.events.js",
+        "content/ui/panes/dashboard/dashboard.js",
+        "content/ui/panes/inventory/inventory.template.js",
+        "content/ui/panes/inventory/inventory.charts.js",
+        "content/ui/panes/inventory/inventory.logic.js",
+        "content/ui/panes/inventory/inventory.events.js",
+        "content/ui/panes/inventory/inventory.js",
+        "content/core/observers.js",
+        "content/main.js"
+      ],
+      "css": [
+        "styles/global.css",
+        "styles/topbar.css",
+        "styles/sidebar.css",
+        "styles/panes.css",
+        "styles/dashboard.css",
+        "styles/inventory.css",
+        "styles/settings.css",
+        "styles/animations.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+/* ============================================================
+   panes.css — Shared styles for all slide-in panes
+   ============================================================ */
+
+/* Add Contact Pane */
+#wa-crm-add-contact-pane {
+  position: fixed;
+  top: 52px;
+  right: 64px;
+  width: 320px;
+  height: auto;
+  min-height: 320px;
+  background: rgb(255, 255, 255);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  transition: right 0.3s;
+  font-family: sans-serif;
+}
+
+/* Settings Pane */
+#wa-crm-settings-pane {
+  position: fixed;
+  top: 52px;
+  right: 64px;
+  width: 370px;
+  min-width: 320px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.08);
+  z-index: 9999;
+  font-family: sans-serif;
+}
+
+.wa-crm-settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  font-size: 18px;
+  color: #4a4a4a;
+}
+
+.wa-crm-settings-label {
+  font-size: 18px;
+  color: #4a4a4a;
+  font-weight: 400;
+}
+
+/* Toggle switch */
+.wa-crm-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  vertical-align: middle;
+}
+
+.wa-crm-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.wa-crm-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #e6e6e6;
+  border-radius: 26px;
+  transition: 0.3s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.wa-crm-slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.wa-crm-switch input:checked + .wa-crm-slider {
+  background: #2a4bff;
+}
+
+.wa-crm-switch input:checked + .wa-crm-slider::before {
+  transform: translateX(20px);
+  background: #fff;
+}
+
+/* Shared pane close button */
+.wa-crm-pane-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.wa-crm-pane-close-btn:hover {
+  background: #ddd;
+}
