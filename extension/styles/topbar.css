@@ -9,12 +9,12 @@
   width: calc(100vw - 60px);
   height: 48px;
   background: rgb(17, 27, 33);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 999998;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  /* No box-shadow — matches sidebar exactly */
 }
 
 .wa-crm-top-inner {
