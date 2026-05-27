@@ -4,11 +4,12 @@
 
 #wa-crm-inventory-pane {
   position: fixed;
-  top: 52px;
-  right: 64px;
-  width: 370px;
+  top: 48px;
+  right: 60px;
+  width: 360px;
   background: #fff;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
-  font-family: sans-serif;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 9998;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border-left: 1px solid #eee;
 }
