@@ -1,13 +1,9 @@
-/* topbar.events.js — Top bar button click handlers with active state. */
+/* topbar.events.js — Top bar button handlers with active state + custom DOM filtering. */
 var WaCRM = window.WaCRM || {};
 window.WaCRM = WaCRM;
 
 WaCRM.topbarEvents = {
-  /**
-   * Set the active visual state on a top bar button.
-   * Removes active from all others first.
-   * @param {string} activeId - The button ID to mark active.
-   */
+
   setActive: function(activeId) {
     var IDS = WaCRM.IDS;
     var allBtnIds = [
@@ -26,30 +22,47 @@ WaCRM.topbarEvents = {
   bind: function() {
     var IDS  = WaCRM.IDS;
     var svc  = WaCRM.whatsappService;
+    var flt  = WaCRM.chatFilterService;
     var self = this;
 
-    function bindBtn(id, filterLabel) {
+    /* Buttons that use WhatsApp's native filter tabs */
+    function bindNative(id, label) {
       var btn = document.getElementById(id);
       if (btn) {
         btn.onclick = function() {
-          svc.triggerFilter(filterLabel);
+          flt.showAll();           /* clear any custom DOM filter first */
+          svc.triggerFilter(label);
           self.setActive(id);
         };
       }
     }
 
-    bindBtn(IDS.BTN_ALL,        'All');
-    bindBtn(IDS.BTN_UNREAD,     'Unread');
-    bindBtn(IDS.BTN_ACTIVE,     'Active');
-    bindBtn(IDS.BTN_DUES,       'All');
-    bindBtn(IDS.BTN_FOLLOWUP,   'Favourites');
-    bindBtn(IDS.BTN_RESPOND,    'Unread');
-    bindBtn(IDS.BTN_UNKNOWN,    'All');
-    bindBtn(IDS.BTN_GROUPS,     'Groups');
-    bindBtn(IDS.BTN_BUSINESSES, 'All');
-    bindBtn(IDS.BTN_BRANDS,     'All');
+    /* Buttons that use our custom DOM filter */
+    function bindCustom(id, filterKey) {
+      var btn = document.getElementById(id);
+      if (btn) {
+        btn.onclick = function() {
+          flt.applyFilter(filterKey);
+          self.setActive(id);
+        };
+      }
+    }
 
-    /* Default: mark All as active on load */
+    /* ── Native WhatsApp filters ── */
+    bindNative(IDS.BTN_ALL,      'All');
+    bindNative(IDS.BTN_UNREAD,   'Unread');
+    bindNative(IDS.BTN_GROUPS,   'Groups');
+    bindNative(IDS.BTN_FOLLOWUP, 'Favourites');
+
+    /* ── Custom CRM DOM filters ── */
+    bindCustom(IDS.BTN_BUSINESSES, 'businesses');
+    bindCustom(IDS.BTN_BRANDS,     'brands');
+    bindCustom(IDS.BTN_UNKNOWN,    'unknown');
+    bindCustom(IDS.BTN_ACTIVE,     'active');
+    bindCustom(IDS.BTN_DUES,       'dues');
+    bindCustom(IDS.BTN_RESPOND,    'respond');
+
+    /* Default: All active on load */
     self.setActive(IDS.BTN_ALL);
   }
 };
