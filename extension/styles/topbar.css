@@ -1,13 +1,14 @@
 /* ============================================================
    topbar.css — CRM top navigation bar
-   Starts AFTER WhatsApp's left icon nav (~72px wide)
+   Spans full width minus right sidebar only.
+   WhatsApp's left nav is inside #app which is inside our wrapper.
    ============================================================ */
 
 #wa-crm-top-bar {
   position: fixed !important;
   top: 0 !important;
-  left: 72px !important;                        /* skip WhatsApp's left icon nav */
-  width: calc(100vw - 72px - 60px) !important;  /* full width minus left nav and right sidebar */
+  left: 0 !important;
+  width: calc(100vw - 60px) !important;
   height: 48px !important;
   background: #111b21 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
