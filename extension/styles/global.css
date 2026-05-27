@@ -2,16 +2,10 @@
    global.css — Base layout, body, wrapper, WhatsApp overrides
    ============================================================ */
 
-/* Push WhatsApp content away from the right sidebar */
-.app,
-#app,
-main,
-._3Bc7H {
-  margin-right: 60px !important;
-}
-
+/* Prevent WhatsApp content from going under the sidebar */
 body {
-  padding-top: 28px !important;
+  padding-top: 0 !important;
+  margin-right: 60px !important;
 }
 
 /* Wrapper that contains the WhatsApp #app element,
@@ -26,15 +20,12 @@ body {
   height: calc(100vh - 48px);
   overflow: hidden;
   z-index: 1;
-  background: #111;
-  display: flex;
 }
 
 #wa-crm-wa-wrapper > #app,
 #wa-crm-wa-wrapper > .app {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   transform: scale(1);
   transform-origin: top left;
-  background: #111;
 }
