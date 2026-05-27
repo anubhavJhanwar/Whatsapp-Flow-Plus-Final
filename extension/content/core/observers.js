@@ -3,18 +3,20 @@ var WaCRM = window.WaCRM || {};
 window.WaCRM = WaCRM;
 
 WaCRM.observers = {
-  /* Re-inject top bar if WhatsApp's SPA navigation removes it */
+
   startSpaObserver: function() {
     var observer = new MutationObserver(function() {
+      /* Re-inject topbar if WhatsApp SPA navigation removed it */
       if (!document.getElementById(WaCRM.IDS.TOP_BAR)) {
         WaCRM.injector.injectTopBar(WaCRM.topbarTemplate.getHTML());
         WaCRM.topbarEvents.bind();
       }
+      /* Always re-sync topbar position in case WA re-rendered its left nav */
+      WaCRM.injector.updateTopBarPosition();
     });
     observer.observe(document.body, { childList: true, subtree: false });
   },
 
-  /* Auto-open Add Contact pane for unsaved numbers */
   startUnsavedContactObserver: function() {
     var mainChat = document.querySelector(WaCRM.SELECTORS.MAIN_CHAT);
     if (!mainChat) return;
@@ -26,5 +28,14 @@ WaCRM.observers = {
       }
     });
     contactObserver.observe(mainChat, { childList: true, subtree: true });
+  },
+
+  /**
+   * Watch for window resize to re-sync topbar position.
+   */
+  startResizeObserver: function() {
+    window.addEventListener('resize', function() {
+      WaCRM.injector.updateTopBarPosition();
+    });
   }
 };

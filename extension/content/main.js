@@ -19,6 +19,7 @@ function initExtension() {
   /* 3. Start observers */
   WaCRM.observers.startSpaObserver();
   WaCRM.observers.startUnsavedContactObserver();
+  WaCRM.observers.startResizeObserver();
 
   WaCRM.appState.initialized = true;
   console.log('[WA CRM] Extension initialized.');
