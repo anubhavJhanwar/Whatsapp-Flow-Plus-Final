@@ -1,15 +1,13 @@
 /* ============================================================
-   global.css — Base layout, body, wrapper, WhatsApp overrides
+   global.css — Base layout overrides
    ============================================================ */
 
-/* Prevent WhatsApp content from going under the sidebar */
 body {
   padding-top: 0 !important;
   margin-right: 60px !important;
 }
 
-/* Wrapper that contains the WhatsApp #app element,
-   positioned below the top bar and left of the sidebar */
+/* Wrapper: sits below topbar, right of WA left nav, left of our sidebar */
 #wa-crm-wa-wrapper {
   position: fixed;
   top: 48px;
