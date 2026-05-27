@@ -2,11 +2,10 @@
   "manifest_version": 3,
   "name": "WA Flow Plus",
   "version": "2.0",
-  "description": "A professional CRM layer injected into WhatsApp Web.",
-  "permissions": ["tabs", "activeTab", "scripting", "storage", "management"],
+  "description": "Professional CRM layer for WhatsApp Web.",
+  "permissions": ["tabs", "activeTab", "scripting", "storage"],
   "host_permissions": [
-    "https://web.whatsapp.com/*",
-    "https://*/*"
+    "https://web.whatsapp.com/*"
   ],
   "web_accessible_resources": [
     {
